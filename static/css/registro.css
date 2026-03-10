@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(#1548E5, #1842C2);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.card {
+    background: #F6F9Fb;
+    width: 380px;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.caja-logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #1751E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: logoEntrada  0.8s  ease-out;
+
+} 
+
+@keyframes logoEntrada {
+    0% {
+        transform:  scale(0.3);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+} 
+
+.caja-logo .logo {
+    width: 35px;
+    height: 35px;
+    color: #FFFFFF;
+
+    animation: logoLatido 2.5s infinite 1s;
+} 
+
+@keyframes logoLatido{
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.card h1 {
+    margin-bottom: 5px;
+    color: #1751E5;
+} 
+
+.card p {
+    margin-bottom: 20px;
+    color:#777;
+    font-size: 14px;
+}
+
+.formulario-registro {
+    text-align: left;
+}
+
+.label-form {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #444;
+}
+
+.caja-ico-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.caja-ico-input:focus-within {
+    border-color: #667EEA;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3) ;
+} 
+
+.caja-ico-input .ico-input {
+    color: #1548E5;
+}
+
+.ico-input, .input-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.input-entry {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+select {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: transparent;
+}
+
+.caja-terminos {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+
+.caja-terminos .label-termino .enlace {
+    color: #667EEA;
+    text-decoration: none;
+}
+
+.caja-terminos .label-termino .enlace:hover{
+    text-decoration: underline;
+} 
+
+.btn-check {
+    margin-right: 5px;
+}
+
+.caja-boton {
+    margin-top: 20px; 
+    text-align: center;
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #1842C2;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-confirmar:hover{
+    background: linear-gradient(#1751E5, #1548E5);
+}
+
+.parrafo-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.parrafo-link .enlace {
+    color: #667EEA;
+    text-decoration: none;
+}
+
+.parrafo-link a:hover {
+    text-decoration: underline;
+}

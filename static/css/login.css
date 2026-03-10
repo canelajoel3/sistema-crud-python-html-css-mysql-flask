@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    
+} 
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(#1e3a8a, #1d4ed8, #475569);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+} 
+
+.login-container {
+    background: #F4F7FA;
+    width: 380px;
+    padding: 30px;
+    text-align: center; 
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 15);
+}
+
+.login-container .login-card {
+    max-width: 80px;
+    background: linear-gradient(#1e3a8a, #1d4ed8, #475569); 
+    color: #ffffff; 
+    border-radius: 60px;
+    margin: auto;
+    padding: 10px;
+}
+
+.login-container h1 {
+    color: #1942C6;
+    padding: 5px;
+} 
+
+.login-container p {
+    color: #5F5F5F;
+    padding: 10px;
+}  
+
+
+.login-container label {
+    color: #000000;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.login-container form{
+    padding: 10px;
+}
+
+.login-card form > div{
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-container label{
+    color: #000000;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 14px;
+}
+
+.login-container .input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
+} 
+
+.login-container .input-wrapper .input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #1942C6;
+    pointer-events: none;
+
+} 
+
+.login-container .input-wrapper .form-input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #b9b9b9;
+    border-radius: 8px;
+    padding-left: 38px;
+    outline: none;
+} 
+
+.login-container .input-wrapper .form-input:focus{
+    border-color: #1942C6;
+    box-shadow: 0 0 0 3px rgba(25, 66, 198, 0.15);
+}
+
+.login-container .label-check{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.login-container .btn-button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: radial-gradient(#2a8ae3, #1B3DA4); 
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.login-container .btn-button:hover{
+    opacity: 0.9;
+}
+
+
+
+
+

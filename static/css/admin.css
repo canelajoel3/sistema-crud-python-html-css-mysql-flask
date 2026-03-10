@@ -1,0 +1,315 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Layout principal */
+.container-principal{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    grid-template-rows:70px 1fr;
+
+    grid-template-areas:
+    "sidebar topbar"
+    "sidebar contenido";
+
+    height:100vh;
+}
+
+/* Sidebar izquierda */
+.sidebar{
+    grid-area:sidebar;
+    background:#2E59DE;
+    color:white;
+    padding:20px;
+    border-right: 1px solid #E5E7EB;
+}
+
+.sidebar h1{
+    font-size: 22px;
+    margin-bottom:40px;
+}
+
+.menu-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+} 
+
+.btn-menu:hover{
+    background:rgba(255,255,255,0.12);
+}
+
+.icono-menu {
+    width: 30px;
+    height: 30px;
+}
+
+.menu-btn button:hover{
+    background: rgba(255, 255, 255, 0.1);
+    align-items: center;
+    text-align: center;
+}
+
+/* Barra superior */
+.topbar{
+    grid-area:topbar;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 30px;
+    background: #2E59DE;
+    border-bottom:1px solid #E5E7EB;
+}
+
+.titulo-barra h2 {
+    font-size: 18px;
+    color: #FFF;
+}
+
+.zona-rapida {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.icono-noti{
+    width: 22px;
+    height: 22px;
+    color: #6B7280;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icono-noti:hover{
+    color:#22C55E;
+    transform: scale(1.1);
+}
+
+.cuadro-iniciales{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #4369DE;
+}
+
+.area-cicurlar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.area-cicurlar p {
+    font-size: 12px;
+    color: #4F46E5;
+    font-weight: bold;
+}
+
+.cuadro-iniciales span{ 
+    font-size: 14px;
+    color: #FFF;
+}
+
+/* Botón salir */
+.cuadro-btn-salir{
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.icono-salir{
+    width: 25px;
+    height: 25px;
+    color: #E5E7EB;
+}
+
+.btn-salir{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    color:#E5E7Eb;
+    font-size: 14px;
+}
+
+.cuadro-btn-salir:hover{
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #b98c8c ;
+}
+
+.cuadro-btn-salir:hover .btn-salir,
+.cuadro-btn-salir:hover .icono-salir{
+    color:#b52222;
+}
+
+
+.contenido-usuarios {
+    background: #FFFFFF;
+    border-radius: 20px; /* Bordes más redondeados como en Figma */
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.contenido-usuarios h2 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Estilo para la barra de búsqueda */
+.area-busqueda {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 20px;
+}
+
+.area-busqueda input {
+    flex: 1;
+    background: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 12px 20px 12px 45px;
+    font-size: 14px;
+    outline: none;
+}
+
+.btn-agregar {
+    background-color: #2563EB; 
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-agregar:hover {
+    background: #1D4ED8;
+    transform: translateY(-1px);
+}
+
+/* Estructura de la Tabla */
+.area-tabla {
+    border-radius: 12px;
+    overflow: auto; /* Para que los bordes redondeados corten el encabezado azul */
+    border: 1px solid #E5E7EB;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #2563EB; 
+    color: #FFFFFF;
+    padding: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 0.3px;
+}
+
+tbody td {
+    padding: 20px 16px;
+    border-bottom: 1px solid #F3F4F6;
+    color: #374151;
+    font-size: 14px;
+}
+
+/* Estilo para los Roles (Badges) */
+.rol {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.rol-admin {
+    background: #F3E8FF;
+    color: #7E22CE;
+}
+
+.rol-usuario {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+.rol-editor {
+    background: #DBEAFE;
+    color: #1D4ED8;
+}
+
+/* Acciones (Lápiz y Basura) */
+.btn-acciones {
+    display: flex;
+    gap: 14px;
+}
+
+.icono-editar {
+    color: #3B82F6;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icono-editar:hover{
+    background: #DBEAFE;
+    transform: scale(1.1);
+}
+
+.icono-eliminar {
+    color: #EF4444;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icono-eliminar:hover{
+    background: #FEE2E2;
+    transform: scale(1.1);
+}
+
+tbody tr{
+    transition: background 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+    background: #FAFAFA;
+}
+
+tbody tr:hover {
+    background-color: #F9FAFB;
+}
