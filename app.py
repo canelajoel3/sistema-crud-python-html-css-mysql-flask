@@ -1,7 +1,7 @@
 from flask import Flask 
-from flask import render_template, request, redirect, url_for, session 
+from flask import render_template, request, redirect, url_for, session, jsonify
 from base_datos.conexion import database
-from base_datos.models import Usuario
+from base_datos.models import Usuario, Curso
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os 
@@ -25,9 +25,6 @@ DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_NAME = os.getenv("DB_NAME")
 DB_HOST = os.getenv("DB_HOST")
-
-print(f"El usuario es: {DB_USER}")
-print(f"La contraseña es: {DB_PASSWORD}")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+mysqldb://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False 
@@ -122,11 +119,16 @@ def dashboard():
     if "usuario_id" not in session:
         return redirect(url_for("inicio"))
     
+    usuario_id = session["usuario_id"]
+    usuario = Usuario.query.get(usuario_id)
+    cursos = usuario.cursos
+    
     return render_template(
         "dashboard.html", 
         nombre=session["usuario_nombre"],
         rol=session["usuario_rol"],
-        fecha=session["usuario_fecha"]
+        fecha=session["usuario_fecha"],
+        cursos=cursos
     )
 
 @app.route("/logout")
@@ -163,6 +165,76 @@ def eliminar_usuario(id):
 
     return redirect(url_for("admin"))
 
+@app.route("/crear_curso", methods=["POST"])
+def crear_curso():
+    usuario_id = session.get("usuario_id")
 
+    if not usuario_id:
+        return "Debes iniciar sesiòn para crear un curso."
+    
+    nombre = request.form.get("nombre_curso")
+    descripcion = request.form.get("descripcion")
+    instructor = request.form.get("instructor")
+
+    usuario = Usuario.query.get(usuario_id)
+
+    if usuario:
+        try:
+            nuevo_curso = Curso(
+                nombre_curso=nombre,
+                descripcion=descripcion,
+                instructor=instructor,
+                usuario_id=usuario.id
+            )
+            database.session.add(nuevo_curso)
+            database.session.commit()
+
+            return redirect(url_for("dashboard"))
+        
+        except Exception as e:
+            database.session.rollback()
+            return f"Error al crear el curso: {e}"
+    else: 
+        return "Usuario no encontrado, no se puede crear el curso."
+    
+
+@app.route("/api/usuarios/<int:usuarios_id>/cursos", methods=["GET"])
+def obtener_cursos_usuarios(usuarios_id):
+    usuario = Usuario.query.get(usuarios_id)
+
+    if not usuario: 
+        return jsonify({"Error": "Usuario no encontrado"}), 404
+
+    lista_curso = []
+    for curso in usuario.cursos:
+        lista_curso.append({
+            "id": curso.id,
+            "nombre_curso": curso.nombre_curso,
+            "descripcion": curso.descripcion,
+            "instructor": curso.instructor,
+            "fecha_creacion": curso.fecha_creacion.strftime("%Y-%m-%d")
+        })
+
+    return jsonify(lista_curso)
+
+
+@app.route("/api/cursos", methods=["GET"])
+def obtener_todos_cursos():
+    cursos = Curso.query.all()
+
+    lista_curso = []
+    for curso in cursos:
+        lista_curso.append({
+            "id": curso.id,
+            "nombre_curso": curso.nombre_curso,
+            "descripcion": curso.descripcion,
+            "instructor": curso.instructor,
+            "usuario_id": curso.usuario_id,
+            "fecha_creacion": curso.fecha_creacion.strftime("%Y-%m-%d")
+        })
+
+    return jsonify(lista_curso)
+
+    
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

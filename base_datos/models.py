@@ -13,14 +13,16 @@ class Usuario(database.Model):
     rol = database.Column(database.String(12), nullable=False)
     fecha_registro = database.Column(database.DateTime, default=database.func.current_timestamp())
 
-    def __str__(self):
-        return f"""ID: {self.id}
-                Nombre: {self.nombre}
-                Apellido: {self.apellido}
-                Correo Electrónico: {self.correo_electronico}
-                Contraseña: {self.contrasena}
-                Telefono: {self.telefono}
-                Fecha de Nacimiento: {self.fecha_nacimiento}
-                Rol: {self.rol}
-                Fecha de Regristo: {self.fecha_registro} """
+    cursos = database.relationship("Curso", backref="usuarios")
+
     
+class Curso(database.Model):
+    __tablename__ = "cursos"
+
+    id = database.Column(database.Integer, primary_key=True)
+    nombre_curso = database.Column(database.String(100), nullable=False)
+    descripcion = database.Column(database.Text)
+    instructor = database.Column(database.String(100), nullable=False)
+    fecha_creacion = database.Column(database.DateTime, default=database.func.current_timestamp())
+
+    usuario_id = database.Column(database.Integer, database.ForeignKey("usuarios.id"))
